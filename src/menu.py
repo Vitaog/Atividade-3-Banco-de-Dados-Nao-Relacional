@@ -1,4 +1,5 @@
 # Defina a URI do seu banco de dados MongoDB aqui
+from login import exportar_usuarios_mongodb_para_redis, listar_e_autenticar_usuarios
 from produto import atualizar_produto_mongodb_e_redis, deletar_produto_redis, exportar_produtos_mongodb_para_redis, imprimir_produtos_redis
 from vendedor import deletar_vendedor_redis, editar_vendedor, exportar_vendedores_mongodb_para_redis, imprimir_vendedores_redis 
 
@@ -59,5 +60,18 @@ while (key != 'S' and key != 's'):
             editar_vendedor(MONGO_URI,REDIS_HOST,REDIS_PORT,REDIS_PASSWORD)
         elif (sub == '4'):
             deletar_vendedor_redis(REDIS_HOST,REDIS_PORT,REDIS_PASSWORD)
+    
+    elif (key == '3'):
+        print("|-----------------------Login-----------------------------------|")
+        print("1. Importação Usuários do MongoDB para o Redis")
+        print("2. Login de Usuário")
+        print("|---------------------------------------------------------------|")
+        sub = input("Digite a opção desejada? (V para voltar) ")
+        print ("")
+
+        if (sub == '1'):
+            exportar_usuarios_mongodb_para_redis(MONGO_URI,REDIS_HOST,REDIS_PORT,REDIS_PASSWORD)
+        elif (sub == '2'):
+            listar_e_autenticar_usuarios(REDIS_HOST,REDIS_PORT,REDIS_PASSWORD)
   
 print("Vlw Flw...")
